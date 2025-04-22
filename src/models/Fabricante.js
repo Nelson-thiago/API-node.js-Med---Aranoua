@@ -11,7 +11,7 @@ class Fabricante extends Model {
           allowNull: false,
           unique: true
         },
-        registro: {
+        documento_registro: {
           type: DataTypes.STRING,
           allowNull: false,
           unique: true,

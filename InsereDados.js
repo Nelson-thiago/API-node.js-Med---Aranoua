@@ -10,21 +10,15 @@ import Fabricante from './models/Fabricante.js';
     await sequelize.sync({ force: true }); // Recria tabelas do zero
     console.log('Novo banco de dados criado!');
 
-    await Estado.create({ nome: 'São Paulo', sigla: 'SP' });
-    await Estado.create({ nome: 'Rio de Janeiro', sigla: 'RJ' });
-    await Estado.create({ nome: 'Amazonas', sigla: 'AM' });
+    await Fabricante.create({ nome: 'Vita Max', documento_registro: '12345678900', pais:"Brasil" });
+    await Fabricante.create({ nome: 'Healty', documento_registro: '40028922098', pais:"Estados Unidos" });
 
-    console.log('Estados criados!');
+    console.log('Fabricantes criados!');
 
-    await Cidade.create({ nome: 'São Paulo', ibge: '3550308', estado_id: 1 }); // ID do estado SP
-    await Cidade.create({ nome: 'Rio de Janeiro', ibge: '3304557', estado_id: 2 }); // ID do estado RJ
-    await Cidade.create({ nome: 'Manaus', ibge: '1302607', estado_id: 3 }); // ID do estado AM
+    await Medicamento.create({ nome_comercial: 'nimesulida', registro_anvisa: '3550308', dosagem: "30mg", fabricante_id: 1}); // ID vita max
+    await Medicamento.create({ nome_comercial: 'metformina', registro_anvisa: '0849484', dosagem: "100mg", fabricante_id: 2}); // ID healty
 
     console.log('Cidades criadas!');
-
-    await Pessoa.create({ nome: 'João Silva', telefone: '123456789', email: 'joao@example.com', cidade_id: 1 });
-
-    console.log('Pessoas criadas!');
 
   } catch (error) {
     console.error('Erro ao inserir registros:', error.message);
