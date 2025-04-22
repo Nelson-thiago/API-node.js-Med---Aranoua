@@ -1,43 +1,51 @@
-// src/models/Cidade.js
+// src/models/Medicamento.js
 import { DataTypes, Model } from 'sequelize';
 import Fabricante from './Fabricante.js'; // Importa o modelo Estado
 
 class Medicamento extends Model {
   static initModel(sequelize) {
-    Cidade.init(
+    Medicamento.init(
       {
-        ibge: {
+        nome_comercial: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        principio_ativo: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        registro_anvisa: {
           type: DataTypes.STRING,
           allowNull: false,
           unique: true,
         },
-        nome: {
+        dosagem: {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        estado_id: {
+        fabricante_id: {
           type: DataTypes.INTEGER,
           allowNull: false,
           references: {
-            model: Estado, // Associação com Estado
+            model: Fabricante, // Associação com Estado
             key: 'id',
           },
         },
       },
       {
         sequelize, // Instância do Sequelize
-        modelName: 'Cidade',
-        tableName: 'cidades',
+        modelName: 'Medicamento',
+        tableName: 'medicamentos',
         timestamps: true,
       }
     );
 
-    // Associação com Estado
-    Cidade.belongsTo(Estado, {
-      foreignKey: 'estado_id',
-      as: 'estado',
+    // Associação N:1 com fabricante
+    Medicamento.belongsTo(Fabricante, {
+      foreignKey: 'fabricante_id',
+      as: 'fabricante',
     });
   }
 }
 
-export default Cidade;
+export default Medicamento;

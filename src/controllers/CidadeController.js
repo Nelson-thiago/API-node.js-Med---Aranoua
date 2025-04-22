@@ -1,5 +1,5 @@
 import Estado from '../models/Estado.js';
-import Cidade from '../models/Cidade.js';
+import Medicamento from '../models/Medicamento.js';
 
 export const listarCidades = async (req, res) => {
     try {
