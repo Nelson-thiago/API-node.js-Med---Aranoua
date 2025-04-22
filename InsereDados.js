@@ -1,7 +1,7 @@
 // src/testes/TestaInserirRegistros.js
 import sequelize from './src/config/database.js';
-import Medicamento from './models/Medicamento.js';
-import Fabricante from './models/Fabricante.js';
+import Medicamento from './src/models/Medicamento.js';
+import Fabricante from './src/models/Fabricante.js';
 
 (async () => {
   try {
@@ -15,10 +15,10 @@ import Fabricante from './models/Fabricante.js';
 
     console.log('Fabricantes criados!');
 
-    await Medicamento.create({ nome_comercial: 'nimesulida', registro_anvisa: '3550308', dosagem: "30mg", fabricante_id: 1}); // ID vita max
-    await Medicamento.create({ nome_comercial: 'metformina', registro_anvisa: '0849484', dosagem: "100mg", fabricante_id: 2}); // ID healty
+    await Medicamento.create({ nome_comercial: 'nimesulinda', principio_ativo: "nimesulida", registro_anvisa: '3550308', dosagem: "30mg", fabricante_id: 1}); // ID vita max
+    await Medicamento.create({ nome_comercial: 'metforminha', principio_ativo: "metformina", registro_anvisa: '0849484', dosagem: "100mg", fabricante_id: 2}); // ID healty
 
-    console.log('Cidades criadas!');
+    console.log('Medicamentos criadas!');
 
   } catch (error) {
     console.error('Erro ao inserir registros:', error.message);

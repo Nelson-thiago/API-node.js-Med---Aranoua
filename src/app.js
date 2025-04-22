@@ -1,7 +1,6 @@
 import express from 'express';
-import pessoaRoutes from './routes/PessoaRoutes.js';
-import cidadeRoutes from './routes/CidadeRoutes.js';
-import estadoRoutes from './routes/EstadoRoutes.js';
+import medicamentoRoutes from './routes/medicamentoRoutes.js';
+// import estadoRoutes from './routes/EstadoRoutes.js';
 import sequelize from './config/database.js';
 
 const app = express();
@@ -10,9 +9,9 @@ const app = express();
 app.use(express.json());
 
 // Rotas
-app.use('/api/pessoas', pessoaRoutes);
-app.use('/api/cidades', cidadeRoutes);
-app.use('/api/estados', estadoRoutes);
+// app.use('/api/pessoas', pessoaRoutes);
+app.use('/api/medicamentos', medicamentoRoutes);
+// app.use('/api/estados', estadoRoutes);
 
 // Inicializar banco de dados
 // Sincronizar banco de dados sem recriar tabelas existentes

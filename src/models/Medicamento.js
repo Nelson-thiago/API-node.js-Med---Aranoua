@@ -1,6 +1,6 @@
 // src/models/Medicamento.js
 import { DataTypes, Model } from 'sequelize';
-import Fabricante from './Fabricante.js'; // Importa o modelo Estado
+import Fabricante from './Fabricante.js'; // Importa o modelo Fabricante
 
 class Medicamento extends Model {
   static initModel(sequelize) {
@@ -27,7 +27,7 @@ class Medicamento extends Model {
           type: DataTypes.INTEGER,
           allowNull: false,
           references: {
-            model: Fabricante, // Associação com Estado
+            model: 'fabricantes', // Associação com Estado
             key: 'id',
           },
         },

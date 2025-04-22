@@ -1,6 +1,6 @@
 // src/models/Fabricante.js
 import { DataTypes, Model } from 'sequelize';
-import { FOREIGNKEYS } from 'sequelize/lib/query-types';
+// import { FOREIGNKEYS } from 'sequelize/lib/query-types';
 
 class Fabricante extends Model {
   static initModel(sequelize) {
@@ -34,10 +34,10 @@ class Fabricante extends Model {
 
     // declaração do relacionamento 1:N, para facilitar o get de medicamentos 
     // por fabricante
-    Fabricante.hasMany(Medicamento,{
-      foreignkey:'fabricante_id', 
-      as: 'medicamentos'
-    });
+    // Fabricante.hasMany(Medicamento,{
+    //   foreignkey:'fabricante_id', 
+    //   as: 'medicamentos'
+    // });
   }
 }
 

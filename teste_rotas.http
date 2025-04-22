@@ -1,0 +1,29 @@
+### 🧾 LISTAR TODOS OS MEDICAMENTOS
+GET http://localhost:3000/api/medicamentos
+Content-Type: application/json
+
+###
+
+### ➕ CRIAR NOVO MEDICAMENTO
+POST http://localhost:3000/api/medicamentos
+Content-Type: application/json
+
+{
+  "nome_comercial": "Dipimais",
+  "principio_ativo": "dipirona",
+  "registro_anvisa": "13567890",
+  "dosagem": "500mg",
+  "fabricante_id": 1
+}
+
+###
+
+### 🔍 OBTER UM MEDICAMENTO PELO ID
+GET http://localhost:3000/api/medicamentos/1
+Content-Type: application/json
+
+###
+
+### ❌ DELETAR UM MEDICAMENTO
+DELETE http://localhost:3000/api/medicamentos/3
+Content-Type: application/json
