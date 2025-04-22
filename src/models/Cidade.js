@@ -1,8 +1,8 @@
 // src/models/Cidade.js
 import { DataTypes, Model } from 'sequelize';
-import Estado from './Estado.js'; // Importa o modelo Estado
+import Fabricante from './Fabricante.js'; // Importa o modelo Estado
 
-class Cidade extends Model {
+class Medicamento extends Model {
   static initModel(sequelize) {
     Cidade.init(
       {
