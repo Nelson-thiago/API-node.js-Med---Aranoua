@@ -11,6 +11,7 @@ export const listarMedicamentos = async (req, res) => {
       });
   
       const response = medicamentos.map((medicamento) => ({
+        id: medicamento.id,
         nome_comercial: medicamento.nome_comercial, 
         principio_ativo: medicamento.principio_ativo,
         registro_anvisa: medicamento.registro_anvisa, 
@@ -30,14 +31,21 @@ export const criarMedicamento = async (req, res) => {
     const { nome_comercial, principio_ativo, registro_anvisa, dosagem, fabricante_id} = req.body;
 
     try {
-
-    if (!fabricante_id) {
-        return res.status(400).json({ error: 'id do fabricante é obrigatório.' });
+    const campos_obrigatorios = { nome_comercial, principio_ativo, registro_anvisa, dosagem, fabricante_id}
+    for (const [campo,valor] of Object.entries(campos_obrigatorios)){
+      if (!valor){
+        return res.status(400).json({ error: `O campo ${campo} é obrigatório.` });
+      }
     }
 
-    const fabricanteEncontrado = await Fabricante.findOne({
-        where: { id: fabricante_id }
-    });
+    const fabricanteEncontrado = await Fabricante.findOne({where: { id: fabricante_id }});
+    if (!fabricanteEncontrado){
+      return res.status(400).json({ error: `Fabricante não encontrado.` });
+    }
+    const registroAnvisaRepetido = await Medicamento.findOne({where: { registro_anvisa: registro_anvisa}});
+    if (registroAnvisaRepetido){
+      return res.status(400).json({ error: `Já existe um medicamento com o mesmo registro da anvisa.` });
+    } 
         
     const novoMedicamento = await Medicamento.create({
         nome_comercial, 
@@ -60,18 +68,21 @@ export const obterMedicamento = async (req, res) => {
           include: {
             model: Fabricante,
             as: 'fabricante'
-        }
+          }
         });
-    
+        
         if (!medicamento) {
           return res.status(404).json({ error: 'medicamento não encontrada.' });
         }
     
         const response = {
-          nome_comercial, 
-          registro_anvisa, 
-          dosagem, 
-          fabricante_id: fabricanteEncontrado.id
+          id: medicamento.id,
+          nome_comercial: medicamento.nome_comercial, 
+          registro_anvisa: medicamento.registro_anvisa, 
+          dosagem: medicamento.dosagem, 
+          fabricante_id: medicamento.fabricante.id,
+          fabricante_nome: medicamento.fabricante.nome
+
         };
 
         res.status(200).json(response);

@@ -1,29 +1,59 @@
-### 🧾 LISTAR TODOS OS MEDICAMENTOS
+### 🧾 LISTAR TODOS OS FABRICANTES
+GET http://localhost:3000/api/fabricantes
+Content-Type: application/json
+
+###
+
+###  CRIAR NOVO FABRICANTE
+POST http://localhost:3000/api/fabricantes
+Content-Type: application/json
+
+{
+  "nome": "Ultra Farma",
+  "documento_registro": "1234563",
+  "pais": "Brasil"
+}
+
+###
+
+### OBTER UM FABRICANTE PELO ID
+GET http://localhost:3000/api/fabricantes/1
+Content-Type: application/json
+
+###
+
+### DELETAR UM FABRICANTE
+DELETE http://localhost:3000/api/fabricantes/1
+Content-Type: application/json
+
+###
+
+### LISTAR TODOS OS MEDICAMENTOS
 GET http://localhost:3000/api/medicamentos
 Content-Type: application/json
 
 ###
 
-### ➕ CRIAR NOVO MEDICAMENTO
+### CRIAR NOVO MEDICAMENTO
 POST http://localhost:3000/api/medicamentos
 Content-Type: application/json
 
 {
   "nome_comercial": "Dipimais",
   "principio_ativo": "dipirona",
-  "registro_anvisa": "13567890",
+  "registro_anvisa": "1sdfs7890",
   "dosagem": "500mg",
   "fabricante_id": 1
 }
 
 ###
 
-### 🔍 OBTER UM MEDICAMENTO PELO ID
-GET http://localhost:3000/api/medicamentos/1
+### OBTER UM MEDICAMENTO PELO ID
+GET http://localhost:3000/api/medicamentos/5
 Content-Type: application/json
 
 ###
 
-### ❌ DELETAR UM MEDICAMENTO
-DELETE http://localhost:3000/api/medicamentos/3
+### DELETAR UM MEDICAMENTO
+DELETE http://localhost:3000/api/medicamentos/5
 Content-Type: application/json
